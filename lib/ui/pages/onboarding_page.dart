@@ -1,8 +1,7 @@
 import 'package:bank_sha/shared/theme.dart';
+import 'package:bank_sha/ui/widgets/buttons.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-
-
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -15,24 +14,21 @@ class _OnboardingPageState extends State<OnboardingPage> {
   //!variabel buat berpindah tampilan
   int curentIndex = 0;
 
- CarouselController carouselController =  CarouselController();
+  CarouselController carouselController = CarouselController();
 
   //! list untuk judul
   List<String> titles = [
-                      'Grow Your\nFinancial Today',
-                      'Build From\nZero to Freedom',
-                      'Start Together',
+    'Grow Your\nFinancial Today',
+    'Build From\nZero to Freedom',
+    'Start Together',
 
-  //!list untuk nama sub
+    //!list untuk nama sub
   ];
   List<String> subtitles = [
-                    'Our system is helping you to\nachive a better goal',
-                    'We provide tips for you so that\nyou can adapt easier',
-                    'We will guide you to where\nyou wanted it too',
-
-
+    'Our system is helping you to\nachive a better goal',
+    'We provide tips for you so that\nyou can adapt easier',
+    'We will guide you to where\nyou wanted it too',
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,47 +37,44 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
       // !semua elemen yg ada di body itu ketengah
       body: Center(
-
         //!semua elemen yg ada dibody dibungkus oleh child dan coulum jadi akan ke bawah semua
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
 
-          // !dibungkus oleh children 
-        children: [
-          // !gambar dimasuka kedalam carousel agar bisa dislide
-          CarouselSlider(
-            items: [
-              Image.asset(
-              'assets/image_onboarding1.png',
-              height: 331,
-              ),
-              Image.asset(
-              'assets/image_onboarding2.png',
-              height: 331,
-              ),
-              Image.asset(
-              'assets/image_onboarding3.png',
-              height: 331,
-              ),
-              
-            ], 
+          // !dibungkus oleh children
+          children: [
+            // !gambar dimasuka kedalam carousel agar bisa dislide
+            CarouselSlider(
+              items: [
+                Image.asset(
+                  'assets/image_onboarding1.png',
+                  height: 331,
+                ),
+                Image.asset(
+                  'assets/image_onboarding2.png',
+                  height: 331,
+                ),
+                Image.asset(
+                  'assets/image_onboarding3.png',
+                  height: 331,
+                ),
+              ],
 
-          // !
-          options: CarouselOptions(
-            height: 331,
-            viewportFraction: 1,
-            enableInfiniteScroll: false, 
-            onPageChanged: (index, reason) {
-              setState(() {
-                curentIndex = index;
-                
-              });
-            },
+              // !
+              options: CarouselOptions(
+                height: 331,
+                viewportFraction: 1,
+                enableInfiniteScroll: false,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    curentIndex = index;
+                  });
+                },
+              ),
+              carouselController: carouselController,
             ),
-            carouselController: carouselController,
-          ),
 
-          // !jark gambar dan kotak bawah
+            // !jark gambar dan kotak bawah
             const SizedBox(
               height: 80,
             ),
@@ -105,149 +98,107 @@ class _OnboardingPageState extends State<OnboardingPage> {
               // !child ini membungkus titles,subtitles,get sratred, dan sign in
               child: Column(
                 children: [
-                Text(
-                  // *judul mengikuti curren index saat ini
-                titles[curentIndex],
-                  style: blackTextStyle.copyWith(
-                    fontSize: 20,
-                    fontWeight: semiBold,
+                  Text(
+                    // *judul mengikuti curren index saat ini
+                    titles[curentIndex],
+                    style: blackTextStyle.copyWith(
+                      fontSize: 20,
+                      fontWeight: semiBold,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 26,
-                ),
-                Text(
-                  subtitles[curentIndex],
-                style: greyTextStyle.copyWith(
-                  fontSize: 16,
-                ),
-                textAlign: TextAlign.center,
-                ),
-                SizedBox(
-                  height: curentIndex == 2 ? 38 : 50,
-                ),
-                // *pengkondisian buat coulm
-                curentIndex == 2 ?
-                Column(
-                  children: [
-                    SizedBox(
-                      // *mwngikuti panjang container
-                    width: double.infinity,
-                    height: 50,
-                    child: TextButton(
-                      onPressed: (){
-                      },
-                      style:TextButton.styleFrom(
-                        backgroundColor: purpleColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(56),
-                        )
-                      ) ,
-                      child: Text(
-                        'Get Started',
-                        style: whiteTextStyle.copyWith(
-                          fontSize: 16,
-                          fontWeight: semiBold,
-                        ),
-                      ),
-                    ),
+                  const SizedBox(
+                    height: 26,
                   ),
-                    
-               const SizedBox(
-                height: 20,
-              ),
-                    SizedBox(
-                      // *mwngikuti panjang container
-                    width: double.infinity,
-                    height: 24,
-                    child: TextButton(
-                      onPressed: (){
-                      },
-                      style:TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        
-                      ) ,
-                      child: Text(
-                        'Sign In',
-                        style: greyTextStyle.copyWith(
-                          fontSize: 16,
-                          fontWeight: semiBold,
-                        ),
-                      ),
+                  Text(
+                    subtitles[curentIndex],
+                    style: greyTextStyle.copyWith(
+                      fontSize: 16,
                     ),
-                  )
-                  ],
-                ):
-
-                Row(children: [
-                  Container(
-                    width: 12,
-                    height: 12,
-                    margin: const EdgeInsets.only(
-                      right: 10,
-                    ),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      //*kalo 0 blue collor kalo tidak light
-                      color: curentIndex == 0 ? blueColor : lightBackgroundColor,
-
-                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  Container(
-                    width: 12,
-                    height: 12,
-                    margin: const EdgeInsets.only(
-                      right: 10,
-                    ),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: curentIndex == 1 ? blueColor : lightBackgroundColor,
-
-                    ),
-                  ),
-                  Container(
-                    width: 12,
-                    height: 12,
-                    margin: const EdgeInsets.only(
-                      right: 10,
-                    ),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                    color: curentIndex == 2 ? blueColor : lightBackgroundColor,
-
-                    ),
-                  ),
-                  const Spacer(),
                   SizedBox(
-                    width: 150,
-                    height: 50,
-                    child: TextButton(
-                      onPressed: (){
-                        carouselController.nextPage();
-                      },
-                      style:TextButton.styleFrom(
-                        backgroundColor: purpleColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(56),
+                    height: curentIndex == 2 ? 38 : 50,
+                  ),
+                  // *pengkondisian buat coulm
+                  curentIndex == 2
+                      ? Column(
+                          children: [
+                            CustomFilledButton(
+                              title: 'Get Started',
+                              onPressed: () {
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, '/sign-up', (route) => false);
+                              },
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            CustomTextButton(
+                              title: 'Sign In',
+                              onPressed: (){
+                                Navigator.pushNamedAndRemoveUntil(context, '/sign-in', (route) => false);
+                              },
+                              )
+                          ],
                         )
-                      ) ,
-                      child: Text(
-                        'continue',
-                        style: whiteTextStyle.copyWith(
-                          fontSize: 16,
-                          fontWeight: semiBold,
+                      : Row(
+                          children: [
+                            Container(
+                              width: 12,
+                              height: 12,
+                              margin: const EdgeInsets.only(
+                                right: 10,
+                              ),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                //*kalo 0 blue collor kalo tidak light
+                                color: curentIndex == 0
+                                    ? blueColor
+                                    : lightBackgroundColor,
+                              ),
+                            ),
+                            Container(
+                              width: 12,
+                              height: 12,
+                              margin: const EdgeInsets.only(
+                                right: 10,
+                              ),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: curentIndex == 1
+                                    ? blueColor
+                                    : lightBackgroundColor,
+                              ),
+                            ),
+                            Container(
+                              width: 12,
+                              height: 12,
+                              margin: const EdgeInsets.only(
+                                right: 10,
+                              ),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: curentIndex == 2
+                                    ? blueColor
+                                    : lightBackgroundColor,
+                              ),
+                            ),
+                            const Spacer(),
+                            CustomFilledButton(
+                              title: 'Continnue',
+                              width: 150,
+                              onPressed: () {
+                                carouselController.nextPage();
+                              },
+                            ),
+                          ],
                         ),
-                      ),
-                    ),
-                  )
                 ],
-                ),
-              ],
               ),
-            ),  
-        ],
-      ),
+            ),
+          ],
+        ),
       ),
     );
   }
